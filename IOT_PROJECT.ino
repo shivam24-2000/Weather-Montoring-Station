@@ -13,7 +13,7 @@ bool flag = false;     // Boolean to save rain status
  void setup() {
     pinMode(enable2, OUTPUT);                                                 // Setting led pin as output
     Serial.begin(115200);                                                       // Initializing baud rate 
-    WiFi.begin("OnePlus7Pro", "12341234");                                  // Connect to WiFi using given id and password 
+    WiFi.begin("ShivamIphone", "onetonine");                                  // Connect to WiFi using given id and password 
     while (WiFi.status() != WL_CONNECTED)                                // WiFi getting connected
     {
       delay(500);
@@ -35,7 +35,8 @@ void loop() {
     Serial.println("rain is detected ");                                    // Print on serial monitor that rain detected
 //    Serial.println(sensorValue2);
     digitalWrite(enable2, HIGH);                                        // Light the LED on board
-    flag = true;                                                            // Rain status is true
+    flag = true;   
+                                                                          // Rain status is true
   }
   else                                                                    // If rain sensor value < threshold
   {
@@ -50,11 +51,14 @@ void loop() {
   Serial.println();                                                                        
   // SENDING DATA TO THINGSPEAK                                                                        
   if (flag == true) {                                                       // If it is raining
-    ThingSpeak.writeField(myChannelNumber, 3, sensorValue2, myWriteAPIKey);        // Send 1 to ThingSpeak in channel 3
+    ThingSpeak.writeField(myChannelNumber, 3, sensorValue2, myWriteAPIKey);        // Send sensorValue to ThingSpeak in channel 3
     //delay(100);
     ThingSpeak.writeField(myChannelNumber, 2, h, myWriteAPIKey);        // Send humidity value to ThingSpeak in channel 2
     //delay(100);
-    ThingSpeak.writeField(myChannelNumber, 1, t, myWriteAPIKey);        // Send temperature value to ThingSpeak in channel 1
+    ThingSpeak.writeField(myChannelNumber, 1, t, myWriteAPIKey);  // Send temperature value to ThingSpeak in channel 1
+
+
+
   }
   else {                                                                    // If it is not raining
       ThingSpeak.writeField(myChannelNumber, 3, 0, myWriteAPIKey);          // Send 0 to ThingSpeak in channel 3
