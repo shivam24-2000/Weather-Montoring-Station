@@ -13,7 +13,7 @@ bool flag = false;     // Boolean to save rain status
  void setup() {
     pinMode(enable2, OUTPUT);                                                 // Setting led pin as output
     Serial.begin(115200);                                                       // Initializing baud rate 
-    WiFi.begin("ShivamIphone", "onetonine");                                  // Connect to WiFi using given id and password 
+    WiFi.begin("OnePlusNord", "prasanna");                                  // Connect to WiFi using given id and password 
     while (WiFi.status() != WL_CONNECTED)                                // WiFi getting connected
     {
       delay(500);
